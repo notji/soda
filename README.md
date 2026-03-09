@@ -81,6 +81,8 @@ make clean
 
 Soda creates local NRPT (Name Resolution Policy Table) rules to route matching DNS queries to itself. If any Group Policy NRPT rules exist on the machine, Windows ignores all local NRPT rules entirely. This means soda won't work on systems with Group managed DNS policies.
 
+Soda binds on `127.0.0.1` and `::1` but only resolves domains matching configured TLDs, everything else gets NXDOMAIN. If your network adapter has `::1` or `127.0.0.1` set as a DNS server, all DNS queries will be routed to soda through normal DNS resolution (bypassing NRPT entirely), and non-matching queries will fail. Make sure your adapter DNS servers point to real upstream resolvers (e.g. `1.1.1.1`, `2606:4700:4700::1111`), not loopback addresses.
+
 ## How it works
 
 On startup, soda creates one NRPT registry key per TLD (e.g. `soda-test`, `soda-local`) that tells Windows to route DNS queries for that TLD to `127.0.0.1`, then signals the DNS Client service to reload. Soda binds UDP port 53 on both IPv4 (`127.0.0.1`) and IPv6 (`::`) and waits for queries.
