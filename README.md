@@ -85,7 +85,7 @@ Soda binds on `127.0.0.1` and `::1` but only resolves domains matching configure
 
 ## How it works
 
-On startup, soda creates one NRPT registry key per TLD (e.g. `soda-test`, `soda-local`) that tells Windows to route DNS queries for that TLD to `127.0.0.1`, then signals the DNS Client service to reload. Soda binds UDP port 53 on both IPv4 (`127.0.0.1`) and IPv6 (`::`) and waits for queries.
+On startup, soda creates one NRPT registry key per TLD (e.g. `soda-test`, `soda-local`) that tells Windows to route DNS queries for that TLD to `127.0.0.1`, then signals the DNS Client service to reload. Soda binds UDP port 53 on both IPv4 (`127.0.0.1`) and IPv6 (`::1`) and waits for queries.
 
 When a query arrives, soda checks if the domain matches any configured TLD. Matches get an A record (`127.0.0.1`) or AAAA record (`::1`). Everything else gets NXDOMAIN.
 
