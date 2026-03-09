@@ -45,8 +45,8 @@ soda.exe --tld test --tld local --tld dev
 
 Create and start the service with `sc.exe`:
 
-[!NOTE]
-> The spaces in `binPath= ` and `start= auto` are required. The `--service` flag is also required` to run soda as a Windows service.
+> [!NOTE]
+> The spaces in `binPath= ` and `start= auto` are required. The `--service` flag is also required to run soda as a Windows service.
 
 ```
 sc.exe create soda binPath= "C:\path\to\soda.exe --tld test --service" start= auto
