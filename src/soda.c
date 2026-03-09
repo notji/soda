@@ -321,7 +321,7 @@ static int proxy_run(const struct config *cfg) {
         return 1;
     }
     WSAEventSelect(sock6, event6, FD_READ);
-    log_v(cfg->verbose, "Listening on [::]:%u\n", BIND_PORT);
+    log_v(cfg->verbose, "Listening on [::1]:%u\n", BIND_PORT);
 
     SOCKET sock4 = socket(AF_INET, SOCK_DGRAM, 0);
     struct sockaddr_in addr4 = {0};
